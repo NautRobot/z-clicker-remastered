@@ -68,9 +68,19 @@ function updateAll() {
     gasForFart = possibleGasForFart[Math.min(fartTokens, possibleGasForFart.length - 1)];
     
     if (zeke) {
-        zeke.style.width = widthHeightOffset + (gas * 2) + "px";
-        zeke.style.height = widthHeightOffset + (gas * 2) + "px";
-    }
+        const minSize = 20;    // Minimum size in pixels (for gas = 10)
+        const maxSize = 500;   // Maximum size in pixels (for gas = 1,000,000)
+        
+        const safeGas = Math.max(10, gas); 
+        const logMin = Math.log10(10);        // Equals 1
+        const logMax = Math.log10(1000000);   // Equals 6
+        const percent = (Math.log10(safeGas) - logMin) / (logMax - logMin);
+
+        const size = minSize + percent * (maxSize - minSize);
+
+        zeke.style.width = size + "px";
+        zeke.style.height = size + "px";
+        }
     
     if (fartTokens > 0) {
         document.getElementById("fartTokensCount").style.display = "block";
