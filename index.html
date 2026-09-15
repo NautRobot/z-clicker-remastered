@@ -86,7 +86,8 @@ async function triggerWarning() {
     
     switch (fartTokens) {
         case 0: document.getElementById("warning-text").innerHTML = "Warning... Minor fart incoming!"; break;
-        case 1: document.getElementById("warning-text").innerHTML = "Warning... Medium fart incoming!"; break;
+        case 1: document.getElementById("warning-text").innerHTML = "Warning... Light fart incoming!"; break;
+        case 2: document.getElementById("warning-text").innerHTML = "Warning... Moderate fart incoming!"; break;
         default: document.getElementById("warning-text").innerHTML = "Warning... Fart incoming!";
     }
     
@@ -99,7 +100,8 @@ async function triggerWarning() {
         
         switch (fartTokens) {
             case 0: document.getElementById("zeke").classList.add("minorFart"); break;
-            case 1: document.getElementById("zeke").classList.add("mediumFart"); break;
+            case 1: document.getElementById("zeke").classList.add("lightFart"); break;
+            case 2: document.getElementById("zeke").classList.add("moderateFart");break;
             default: document.getElementById("zeke").classList.add("fart");
         }
     }, 3000);
@@ -107,7 +109,8 @@ async function triggerWarning() {
     setTimeout(() => {
         switch (fartTokens) {
             case 0: document.getElementById("zeke").classList.remove("minorFart"); break;
-            case 1: document.getElementById("zeke").classList.remove("mediumFart"); break;
+            case 1: document.getElementById("zeke").classList.remove("lightFart"); break;
+            case 2: document.getElementById("zeke").classList.remove("moderateFart"); break;
             default: document.getElementById("zeke").classList.remove("fart");
         }
         gas = 0;
@@ -155,7 +158,8 @@ body {
     transition: box-shadow 0.3s ease;
 }
 .minorFart { animation: minorFart 1.5s infinite alternate; }
-.mediumFart { animation: mediumFart 1.5s infinite alternate; }
+.lightFart { animation: lightFart 1.5s infinite alternate; }
+.moderateFart { animation: moderateFart 1.5s infinite alternate; }
 .warning-msg {
     position: fixed;
     top: 0;
@@ -177,10 +181,15 @@ body {
     50% { box-shadow: 0 0 40px rgb(108, 156, 108), 0 0 80px rgb(108, 156, 108); }
     100% { box-shadow: 0 0 60px rgb(32, 85, 32), 0 0 120px rgb(32, 85, 32); }
 }
-@keyframes mediumFart {
+@keyframes lightFart {
     0% { box-shadow: 0 0 50px rgb(127, 153, 127), 0 0 100px rgb(127, 153, 127); }
     50% { box-shadow: 0 0 70px rgb(108, 156, 108), 0 0 140px rgb(108, 156, 108); }
     100% { box-shadow: 0 0 90px rgb(32, 85, 32), 0 0 170px rgb(32, 85, 32); }
+}
+@keyframes moderateFart {
+    0% { box-shadow: 0 0 80px rgb(127, 153, 127), 0 0 120px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 100px rgb(108, 156, 108), 0 0 160px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 120px rgb(32, 85, 32), 0 0 190px rgb(32, 85, 32); }
 }
 @font-face {
     font-family: dystopian;
