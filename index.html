@@ -44,6 +44,12 @@ function buyUpgrade(upgradeName) {
             document.getElementById("milk").style.display = "none";
             updateAll();
             break;
+        case "beans":
+            fartTokens -= 5;
+            clickPower *= 5.0;
+            document.getElementById("beans").style.display = "none";
+            updateAll();
+            break;
         default:
             break;
     }
@@ -303,6 +309,11 @@ body {
     <h1>Gallon of Milk</h1>
     <p>2x Click Multiplier</p>
     <p>Cost: 3 Fart Token</p>
+  </div>
+  <div class="upgrade" id="milk" onclick="buyUpgrade('beans')">
+    <h1>Jug o' Beans</h1>
+    <p>5x Click Multiplier</p>
+    <p>Cost: 5 Fart Token</p>
   </div>
 </div>
 </body>
