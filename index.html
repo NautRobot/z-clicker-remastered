@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+let gas = 0;
+let clickPower = 1;
+let fartTokens = 0;
+let possibleGasForFart = [10, 25, 50, 100, 500, 1000, 5000, 10000, 100000, 1000000];
+let gasForFart = possibleGasForFart[0];
+let widthHeightOffset = 200;
+let isWarningActive = false;
+let canClick = true;
+const audio = new Audio('alert.wav');
+
+function updateClickStyles() {
+    const zeke = document.getElementById("zeke");
+    const playables = document.getElementById("playables");
+    
+    if (!canClick) {
+        if(playables) playables.style.pointerEvents = "none";
+        if(zeke) {
+            zeke.style.pointerEvents = "none";
+            zeke.style.cursor = "not-allowed";
+        }
+    } else {
+        if(playables) playables.style.pointerEvents = "auto";
+        if(zeke) {
+            zeke.style.pointerEvents = "auto";
+            zeke.style.cursor = "pointer";
+        }
+    }
+}
+
+function buyUpgrade(upgradeName) {
+    if (upgradeName === 'burrito') {
+        fartTokens--;
+        clickPower *= 1.5;
+        document.getElementById("upgrade").style.display = "none";
+        updateAll();
+    }
+}
+
+function clickZeke() {
+    if (!canClick) return; 
+
+    gas += clickPower;
+    updateAll();
+    
+    if (gas >= gasForFart && !isWarningActive) {
+        audio.currentTime = 0;
+        audio.play();
+        triggerWarning();
+    }
+}
+
+function updateAll() {
+    const zeke = document.getElementById("zeke");
+    gasForFart = possibleGasForFart[Math.min(fartTokens, possibleGasForFart.length - 1)];
+    
+    if (zeke) {
+        zeke.style.width = widthHeightOffset + (gas * 2) + "px";
+        zeke.style.height = widthHeightOffset + (gas * 2) + "px";
+    }
+    
+    if (fartTokens > 0) {
+        document.getElementById("fartTokensCount").style.display = "block";
+    } else {
+        document.getElementById("fartTokensCount").style.display = "none";
+    }
+    
+    document.getElementById("gasCount").innerText = "Gas: " + gas;
+    document.getElementById("fartTokensCount").innerText = "Fart Tokens: " + fartTokens;
+    document.getElementById("gasForFart").innerText = gasForFart - gas;
+    
+    updateClickStyles();
+}
+
+async function triggerWarning() {
+    canClick = false;
+    isWarningActive = true;
+    updateClickStyles();
+    document.getElementById("upgrade-section").style.display = "block";
+    
+    await new Promise(resolve => setTimeout(resolve, 1250));
+    const warningBox = document.getElementById("warning-msg");
+    
+    switch (fartTokens) {
+        case 0: document.getElementById("warning-text").innerHTML = "Warning... Minor fart incoming!"; break;
+        case 1: document.getElementById("warning-text").innerHTML = "Warning... Medium fart incoming!"; break;
+        default: document.getElementById("warning-text").innerHTML = "Warning... Fart incoming!";
+    }
+    
+    warningBox.style.display = "flex";
+    
+    setTimeout(() => {
+        warningBox.style.display = "none";
+        audio.pause();
+        isWarningActive = false;
+        
+        switch (fartTokens) {
+            case 0: document.getElementById("zeke").classList.add("minorFart"); break;
+            case 1: document.getElementById("zeke").classList.add("mediumFart"); break;
+            default: document.getElementById("zeke").classList.add("fart");
+        }
+    }, 3000);
+    
+    setTimeout(() => {
+        switch (fartTokens) {
+            case 0: document.getElementById("zeke").classList.remove("minorFart"); break;
+            case 1: document.getElementById("zeke").classList.remove("mediumFart"); break;
+            default: document.getElementById("zeke").classList.remove("fart");
+        }
+        gas = 0;
+        fartTokens++;
+        canClick = true;
+        updateAll();
+    }, 6000);
+}
+</script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1a3f13;
+}
+#banner {
+    background-color: #25862e;
+    padding: 5px;
+    font-family: dystopian, sans-serif;
+    font-size: large;
+}
+#playables {
+    margin-top: 15vh;
+}
+#upgrade-section {
+    left: 1vh;
+    top: 21vh;
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    background-color: #97b392;
+}
+#upgrade {
+    background-color: #25862e;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.circle-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+.minorFart { animation: minorFart 1.5s infinite alternate; }
+.mediumFart { animation: mediumFart 1.5s infinite alternate; }
+.warning-msg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-size: 3rem;
+    font-family: sans-serif;
+    pointer-events: none;
+}
+@keyframes minorFart {
+    0% { box-shadow: 0 0 20px rgb(127, 153, 127), 0 0 40px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 40px rgb(108, 156, 108), 0 0 80px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 60px rgb(32, 85, 32), 0 0 120px rgb(32, 85, 32); }
+}
+@keyframes mediumFart {
+    0% { box-shadow: 0 0 50px rgb(127, 153, 127), 0 0 100px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 70px rgb(108, 156, 108), 0 0 140px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 90px rgb(32, 85, 32), 0 0 170px rgb(32, 85, 32); }
+}
+@font-face {
+    font-family: dystopian;
+    src: url(Dystopian-Canticle-Regular.otf);
+}
+</style>
+</head>
+<body>
+<div id="banner">
+    <h1>Z-Clicker</h1>
+    <p>Click on Zeke to build up gas! Rebirth to release a gassy fart and earn points.</p>
+    <p>Gas to Next Fart: <span id="gasForFart">10</span></p>
+</div>
+<div id="warning-msg" class="warning-msg">
+    <p id="warning-text"></p>
+</div>
+<div id="playables">
+    <img src="zeke.jpg" alt="Zeke" class="circle-img" id="zeke" onclick="clickZeke()">
+    <p id="gasCount">Gas: 0</p>
+    <p id="fartTokensCount" style="display: none;">Fart Tokens: 0</p>
+</div>
+<div id="upgrade-section" style="display: none;">
+  <div id="upgrade" id="burrito" onclick="buyUpgrade('burrito')">
+    <h1>Beef Burrito</h1>
+    <p>1.5x Click Multiplier</p>
+    <p>Cost: 1 Fart Token</p>
+  </div>
+</div>
+</body>
+</html>
