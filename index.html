@@ -32,11 +32,21 @@ function updateClickStyles() {
 }
 
 function buyUpgrade(upgradeName) {
-    if (upgradeName === 'burrito') {
-        fartTokens--;
-        clickPower *= 1.5;
-        document.getElementById("upgrade").style.display = "none";
-        updateAll();
+    switch (upgradeName) {
+        case "burrito":
+            fartTokens--;
+            clickPower *= 1.5;
+            document.getElementById("burrito").style.display = "none";
+            updateAll();
+            break;
+        case "milk":
+            fartTokens -= 3;
+            clickPower *= 2.0;
+            document.getElementById("milk").style.display = "none";
+            updateAll();
+            break;
+        default:
+            break;
     }
 }
 
@@ -157,7 +167,7 @@ body {
     height: 100vh;
     background-color: #97b392;
 }
-#upgrade {
+.upgrade {
     background-color: #25862e;
     margin: 10px;
     padding: 10px;
@@ -268,10 +278,15 @@ body {
     <p id="fartTokensCount" style="display: none;">Fart Tokens: 0</p>
 </div>
 <div id="upgrade-section" style="display: none;">
-  <div id="upgrade" id="burrito" onclick="buyUpgrade('burrito')">
+  <div class="upgrade" id="burrito" onclick="buyUpgrade('burrito')">
     <h1>Beef Burrito</h1>
     <p>1.5x Click Multiplier</p>
     <p>Cost: 1 Fart Token</p>
+  </div>
+  <div class="upgrade" id="milk" onclick="buyUpgrade('milk')">
+    <h1>Gallon of Milk</h1>
+    <p>2x Click Multiplier</p>
+    <p>Cost: 3 Fart Token</p>
   </div>
 </div>
 </body>
