@@ -102,6 +102,13 @@ async function triggerWarning() {
             case 0: document.getElementById("zeke").classList.add("minorFart"); break;
             case 1: document.getElementById("zeke").classList.add("lightFart"); break;
             case 2: document.getElementById("zeke").classList.add("moderateFart");break;
+            case 3: document.getElementById("zeke").classList.add("substantialFart");break;
+            case 4: document.getElementById("zeke").classList.add("seriousFart");break;
+            case 5: document.getElementById("zeke").classList.add("severeFart");break;
+            case 6: document.getElementById("zeke").classList.add("majorFart");break;
+            case 7: document.getElementById("zeke").classList.add("criticalFart");break;
+            case 8: document.getElementById("zeke").classList.add("extremeFart");break;
+            case 9: document.getElementById("zeke").classList.add("catastrophicFart");break;
             default: document.getElementById("zeke").classList.add("fart");
         }
     }, 3000);
@@ -111,6 +118,13 @@ async function triggerWarning() {
             case 0: document.getElementById("zeke").classList.remove("minorFart"); break;
             case 1: document.getElementById("zeke").classList.remove("lightFart"); break;
             case 2: document.getElementById("zeke").classList.remove("moderateFart"); break;
+            case 3: document.getElementById("zeke").classList.remove("substantialFart"); break;
+            case 4: document.getElementById("zeke").classList.remove("seriousFart"); break;
+            case 5: document.getElementById("zeke").classList.remove("severeFart"); break;
+            case 6: document.getElementById("zeke").classList.remove("majorFart"); break;
+            case 7: document.getElementById("zeke").classList.remove("criticalFart"); break;
+            case 8: document.getElementById("zeke").classList.remove("extremeFart"); break;
+            case 9: document.getElementById("zeke").classList.remove("catastrophicFart"); break;
             default: document.getElementById("zeke").classList.remove("fart");
         }
         gas = 0;
@@ -160,6 +174,13 @@ body {
 .minorFart { animation: minorFart 1.5s infinite alternate; }
 .lightFart { animation: lightFart 1.5s infinite alternate; }
 .moderateFart { animation: moderateFart 1.5s infinite alternate; }
+.substantialFart { animation: substantialFart 1.5s infinite alternate; }
+.seriousFart { animation: seriousFart 1.5s infinite alternate; }
+.severeFart { animation: severeFart 1.5s infinite alternate; }
+.majorFart { animation: majorFart 1.5s infinite alternate; }
+.criticalFart { animation: criticalFart 1.5s infinite alternate; }
+.extremeFart { animation: extremeFart 1.5s infinite alternate; }
+.catastrophicFart { animation: catastrophicFart 1.5s infinite alternate; }
 .warning-msg {
     position: fixed;
     top: 0;
@@ -190,6 +211,41 @@ body {
     0% { box-shadow: 0 0 80px rgb(127, 153, 127), 0 0 120px rgb(127, 153, 127); }
     50% { box-shadow: 0 0 100px rgb(108, 156, 108), 0 0 160px rgb(108, 156, 108); }
     100% { box-shadow: 0 0 120px rgb(32, 85, 32), 0 0 190px rgb(32, 85, 32); }
+}
+@keyframes substantialFart {
+    0% { box-shadow: 0 0 100px rgb(127, 153, 127), 0 0 140px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 120px rgb(108, 156, 108), 0 0 180px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 140px rgb(32, 85, 32), 0 0 210px rgb(32, 85, 32); }
+}
+@keyframes seriousFart {
+    0% { box-shadow: 0 0 120px rgb(127, 153, 127), 0 0 160px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 140px rgb(108, 156, 108), 0 0 220px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 160px rgb(32, 85, 32), 0 0 230px rgb(32, 85, 32); }
+}
+@keyframes severeFart {
+    0% { box-shadow: 0 0 140px rgb(127, 153, 127), 0 0 180px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 160px rgb(108, 156, 108), 0 0 240px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 180px rgb(32, 85, 32), 0 0 250px rgb(32, 85, 32); }
+}
+@keyframes majorFart {
+    0% { box-shadow: 0 0 160px rgb(127, 153, 127), 0 0 200px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 180px rgb(108, 156, 108), 0 0 260px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 200px rgb(32, 85, 32), 0 0 270px rgb(32, 85, 32); }
+}
+@keyframes criticalFart {
+    0% { box-shadow: 0 0 180px rgb(127, 153, 127), 0 0 220px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 200px rgb(108, 156, 108), 0 0 280px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 220px rgb(32, 85, 32), 0 0 290px rgb(32, 85, 32); }
+}
+@keyframes extremeFart {
+    0% { box-shadow: 0 0 200px rgb(127, 153, 127), 0 0 240px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 220px rgb(108, 156, 108), 0 0 300px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 240px rgb(32, 85, 32), 0 0 310px rgb(32, 85, 32); }
+}
+@keyframes catastrophicFart {
+    0% { box-shadow: 0 0 220px rgb(127, 153, 127), 0 0 260px rgb(127, 153, 127); }
+    50% { box-shadow: 0 0 240px rgb(108, 156, 108), 0 0 320px rgb(108, 156, 108); }
+    100% { box-shadow: 0 0 260px rgb(32, 85, 32), 0 0 330px rgb(32, 85, 32); }
 }
 @font-face {
     font-family: dystopian;
