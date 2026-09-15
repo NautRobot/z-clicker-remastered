@@ -7,7 +7,6 @@ let clickPower = 1;
 let fartTokens = 0;
 let possibleGasForFart = [10, 25, 50, 100, 500, 1000, 5000, 10000, 100000, 1000000];
 let gasForFart = possibleGasForFart[0];
-let widthHeightOffset = 200;
 let isWarningActive = false;
 let canClick = true;
 const audio = new Audio('alert.wav');
@@ -192,8 +191,8 @@ body {
     cursor: pointer;
 }
 .circle-img {
-    width: 200px;
-    height: 200px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
